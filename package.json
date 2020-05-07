@@ -1,0 +1,51 @@
+{
+  "name": "webpack-study",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack-dev-server --open --port 3000 --hot"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "chromedriver": "^81.0.0",
+    "jquery": "^3.5.0",
+    "mint-ui": "^2.2.13",
+    "sass": "^1.26.5",
+    "vue": "^2.6.11",
+    "vue-router": "^3.1.6"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/plugin-transform-runtime": "^7.9.0",
+    "@babel/preset-env": "^7.9.5",
+    "@babel/runtime": "^7.9.2",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-plugin-component": "^1.1.1",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-0": "^6.24.1",
+    "css-loader": "^3.5.3",
+    "fibers": "^5.0.0",
+    "file-loader": "^6.0.0",
+    "html-webpack-plugin": "^4.2.1",
+    "less": "^3.11.1",
+    "less-loader": "^6.0.0",
+    "node-sass": "^4.14.0",
+    "sass-loader": "^8.0.2",
+    "style-loader": "^1.2.1",
+    "url-loader": "^3.0.0",
+    "vue-compiler": "^4.2.0",
+    "vue-loader": "^15.9.2",
+    "vue-template-compiler": "^2.6.11",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3"
+  },
+  "description": ""
+}

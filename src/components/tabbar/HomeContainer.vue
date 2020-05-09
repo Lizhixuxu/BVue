@@ -34,7 +34,7 @@
 
 <script>
 import { Toast } from 'mint-ui'
-    export default {
+    export default {                                                                                                                                                                                                                             
         data(){
             return {
                 swipeList: []   //保存轮播图的数组

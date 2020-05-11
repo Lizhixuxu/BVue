@@ -10,9 +10,10 @@
 
         <!-- 九宫格到六宫格的改造过程-->
          <ul class="mui-table-view mui-grid-view mui-grid-9">
-		            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
+		            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+                        <router-link to="/home/newslist">
                             <img src="src/images/menu1.png" alt="">
-		                    <div class="mui-media-body">新闻资讯</div></a></li>
+		                    <div class="mui-media-body">新闻资讯</div></router-link></li>
 		            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
 		                    <img src="src/images/menu2.png" alt="">
 		                    <div class="mui-media-body">图片分享</div></a></li>
@@ -45,7 +46,7 @@ import { Toast } from 'mint-ui'
         },
         methods: {
             getSwipe(){ //获取轮播图数据的方法
-                this.$http.get("http://www.liulongbin.top:3005/api/getlunbo").then(result =>{
+                this.$http.get("api/getlunbo").then(result =>{
                     console.log(result.body);
                     if(result.body.status ===0){
                         //成功了
@@ -81,7 +82,7 @@ import { Toast } from 'mint-ui'
     }
 }
 .mui-grid-view.mui-grid-9{
-    background-color:	#FFFFE0;
+    background-color:	white;
     border: none;
     img{
         width: 60px;

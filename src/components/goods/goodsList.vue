@@ -1,53 +1,80 @@
 <template>
     <div class="goods-list">
-        <div class="goods-item">
-            <img src="" alt="">
-            <h1 class="title">买不到吃亏，买不到上当</h1>
+       <!-- <router-link class="goods-item" v-for="item in goodslist" :key="item.id" :to="'/home/goodsinfo/'+ item.id" tag="div">
+            <img :src="item.img_url" alt="">
+            <h1 class="title">{{ item.title }}</h1>
             <div class="info">
                 <p class="price">
-                    <span class="now">$888</span>
-                    <span class="old">$999</span>
+                    <span class="now">￥{{item.sell_price}}</span>
+                    <span class="old">￥{{item.market_price}}</span>
                 </p>
                 <p class="sell">
                     <span>热卖中</span>
-                    <span>只有一件了！</span>
+                    <span>剩{{item.stock_quantity}}件</span>
                 </p>
             </div>
-        </div>
-        <div class="goods-item">
-            <img src="" alt="">
-            <h1 class="title"> </h1>
+        </router-link> -->
+        <!-- 在网页中,有两种跳转形式 -->
+        <!-- 方式一：使用a标签的叫做标签跳转-->
+        <!-- 方式二：使用window.location.herf的形式,叫做编程式导航-->
+        <div class="goods-item" v-for="item in goodslist" :key="item.id" @click="goDetail(item.id)" >
+            <img :src="item.img_url" alt="">
+            <h1 class="title">{{ item.title }}</h1>
             <div class="info">
                 <p class="price">
-                    <span class="now"></span>
-                    <span class="old"></span>
+                    <span class="now">￥{{item.sell_price}}</span>
+                    <span class="old">￥{{item.market_price}}</span>
                 </p>
                 <p class="sell">
                     <span>热卖中</span>
-                    <span></span>
+                    <span>剩{{item.stock_quantity}}件</span>
                 </p>
             </div>
         </div>
-        <div class="goods-item">
-            <img src="" alt="">
-            <h1 class="title"> </h1>
-            <div class="info">
-                <p class="price">
-                    <span class="now"></span>
-                    <span class="old"></span>
-                </p>
-                <p class="sell">
-                    <span>热卖中</span>
-                    <span></span>
-                </p>
-            </div>
-        </div>
+
+
+        <mt-button type="danger" size="large" @click="getMore">加载更多</mt-button>
     </div>
 </template>
 
 <<script>
 export default {
-    
+    data(){
+        return {
+            pageindex:1, //分页的页数
+            goodslist:[]      //存放商品列表的数组
+        }
+    },
+    created() {
+        this.getGoodsList();
+    },
+    methods:{
+        getGoodsList(){
+            //获取商品列表
+            this.$http.get('api/getgoods?pageindex='+ this.pageindex).then(result => {
+                if(result.body.status === 0){
+                    // this.goodslist = result.body.message;
+                    this.goodslist = this.goodslist.concat(result.body.message)
+                }
+            })
+        },
+        getMore(){
+            this.pageindex++;
+            this.getGoodsList();
+        },
+        goDetail(id){
+            //使用JS的形式进行路由导航
+            //注意：this.#route是路由参数对象,所有路由中的参数,params/query 都属于它
+            //this.$router 是一个路由导航对象,用它可以方便的使用JS代码,实现路由的前进,后退,跳转到新的url地址
+            //1.最简单的
+            // this.$router.push('/home/goodsinfo/'+id);
+            //2.传递对象
+            //this.$router.push({path:"/home/goodsinfo/"+id});
+            //3.传递命名的路由
+            this.$router.push({name:"goodsinfo",params:{id}});
+
+        }
+    }  
 }
 </script>
 

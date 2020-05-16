@@ -9,11 +9,12 @@
 </template>
 
 <script>
-import mui from "../../lib/mui/js/mui.min.js"
+import mui from "../../lib/mui/js/mui.js"
 export default {
     mounted() {
         //初始化数字选择框组件
         mui(".mui-numbox").numbox();
+        console.log(this.max)
     },
     methods: {
         countChanged(){
@@ -24,9 +25,9 @@ export default {
     props:["max"],
     watch: {
         //属性监听
-        'max':function(newVal,oldVal){
+        max:function(newVal,oldVal) {
             //使用JS API设置 numbox 的最大值
-             mui(".mui-numbox").numbox().setOPtion('max',newVal);
+             mui(".mui-numbox").numbox().setOPtion("max",newVal);
         }
     },
 };

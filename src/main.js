@@ -59,6 +59,15 @@ var store = new Vuex.Store({
       })
       //将删除完毕后的最新的购物车数据同步到本地存储中
       localStorage.setItem('car',JSON.stringify(state.car))
+    },
+    updateGoodsSelected(state,info){
+      state.car.some(item => {
+        if(item.id == info.id){
+          item.selected = info.selected
+        }
+      })
+      //把最新的所有购物车商品的选择状态保存到store中
+      localStorage.setItem('car',JSON.stringify(state.car))
     }
   },
   getters:{ //this.$store.getters.***
@@ -73,6 +82,26 @@ var store = new Vuex.Store({
       var o = {}
       state.car.forEach(item =>{
         o[item.id] = item.count
+      })
+      return o
+    },
+    getCoodsSelected(state){
+      var o = {}
+      state.car.forEach(item =>{
+        o[item.id] = item.selected
+      })
+      return o
+    },
+    getGoodsCountAndAmount(state){
+      var o = {
+        count:0, //勾选的数量
+        amount:0 //勾选的总价
+      }
+      state.car.forEach(item =>{
+        if(item.selected){
+          o.count += item.count
+          o.amount += item.price * item.count
+        }
       })
       return o
     }

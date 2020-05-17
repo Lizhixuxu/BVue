@@ -2,7 +2,9 @@
   <div class="app-container">
     <!--顶部 Header 区域-->
     <mt-header fixed title="荔枝 & 狮子·Vue项目">
-
+      <span slot="left" @click="goBack" v-show="flag">
+        <mt-button icon="back">返回</mt-button>
+      </span>
     </mt-header>
 
 
@@ -36,7 +38,31 @@
 </template>
 
 <script>
-
+  export default{
+    data() {
+      return {
+        flag:false
+      }
+    },
+    created() {
+     this.flag = this.$router.path === "/home" ? false : true;
+    }, 
+    methods: {
+      goBack(){
+        //点击后退
+        this.$router.go(-1);
+      }
+    },
+    watch: {
+      '$route.path':function(newVal){
+        if(newVal === '/home'){
+          this.flag = false;
+      }else{
+        this.flag = true;
+      }
+    },
+   }
+  }
 </script>
 
 <style lang="scss" scoped>
